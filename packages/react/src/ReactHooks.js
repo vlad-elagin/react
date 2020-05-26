@@ -105,6 +105,9 @@ export function useEffect(
   create: () => (() => void) | void,
   deps: Array<mixed> | void | null,
 ): void {
+  if (!create) {
+    throw new Error('You need to provide a callback for useEffect hook.');
+  }
   const dispatcher = resolveDispatcher();
   return dispatcher.useEffect(create, deps);
 }
@@ -113,6 +116,9 @@ export function useLayoutEffect(
   create: () => (() => void) | void,
   deps: Array<mixed> | void | null,
 ): void {
+  if (!create) {
+    throw new Error('You need to provide a callback for useLayoutEffect hook.');
+  }
   const dispatcher = resolveDispatcher();
   return dispatcher.useLayoutEffect(create, deps);
 }
@@ -121,6 +127,9 @@ export function useCallback<T>(
   callback: T,
   deps: Array<mixed> | void | null,
 ): T {
+  if (!callback) {
+    throw new Error('You need to provide a callback for useCallback hook.');
+  }
   const dispatcher = resolveDispatcher();
   return dispatcher.useCallback(callback, deps);
 }
@@ -129,6 +138,9 @@ export function useMemo<T>(
   create: () => T,
   deps: Array<mixed> | void | null,
 ): T {
+  if (!create) {
+    throw new Error('You need to provide a callback for useMemo hook.');
+  }
   const dispatcher = resolveDispatcher();
   return dispatcher.useMemo(create, deps);
 }
